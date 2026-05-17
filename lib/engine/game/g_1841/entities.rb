@@ -7,6 +7,34 @@ module Engine
   module Game
     module G1841
       module Entities
+        DTG_COLOR_MAP = {
+          'SFLi' => ['#7A2E1E', 'white'],
+          'SFTC' => ['#E2C52A', 'black'],
+          'SFTN' => ['#D9C2A8', 'black'],
+          'CTS' => ['#E6E0D5', 'black'],
+          'ICSF' => ['#A9B63B', 'black'],
+          'CFCC' => ['#1C7A67', 'white'],
+          'SB' => ['#E0B72D', 'black'],
+          'SFV' => ['#E0B72D', 'black'],
+          'SFL' => ['#9DC7E8', 'black'],
+          'ATFA' => ['#E8B1AA', 'black'],
+          'SFTG' => ['#1E78C8', 'white'],
+          'SFMA' => ['#C93E47', 'black'],
+          'SFLP' => ['#CFD468', 'black'],
+          'SSFL' => ['#8E1C63', 'white'],
+          'SLDV' => ['#1A1A1A', 'white'],
+          'CTLP' => ['#2E2778', 'white'],
+          'FTP' => ['#4F4F4B', 'white'],
+          'CGTF' => ['#B2292E', 'white'],
+          'IRSFF' => ['#D28A3A', 'black'],
+          'RSFS' => ['#7567B7', 'white'],
+          'AFI' => ['#E7BBD1', 'black'],
+          'CTDA' => ['#BCD2E5', 'black'],
+          'ILTF' => ['#3E6F53', 'white'],
+          'IFAI' => ['#DE8EA6', 'black'],
+          'RATF' => ['#D96239', 'white'],
+        }.freeze
+
         def game_companies
           companies = [
             {
@@ -93,7 +121,7 @@ module Engine
             color: 'orange',
             text_color: 'white',
           }
-          companies
+          dtgize!(companies)
         end
 
         def game_corporations
@@ -552,7 +580,20 @@ module Engine
                                  historical: true,
                                  startable: false,
                                }])
-          corporations
+          dtgize!(corporations)
+        end
+
+        def dtgize!(rows)
+          return rows unless dtg_colors?
+
+          rows.each do |row|
+            next unless (mapping = DTG_COLOR_MAP[row[:sym]])
+
+            row[:color] = mapping[0]
+            row[:text_color] = mapping[1]
+          end
+
+          rows
         end
       end
     end

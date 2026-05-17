@@ -40,6 +40,11 @@ module Engine
             short_name: 'Use Version 2 SFLi formation',
             desc: 'For Version 1 rules, allow SFLi to run during the OR it is formed the same as Version 2',
           },
+          {
+            sym: :dtg_colors,
+            short_name: 'DTG colors',
+            desc: 'Use DTG-inspired corporation and concession colors for 1841',
+          },
         ].freeze
       end
     end

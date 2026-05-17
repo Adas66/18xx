@@ -1086,6 +1086,10 @@ module Engine
           @sfli_run_variant ||= @optional_rules&.include?(:sfli_run_variant)
         end
 
+        def dtg_colors?
+          @dtg_colors ||= @optional_rules&.include?(:dtg_colors)
+        end
+
         def event_close_companies!
           @log << '-- Event: Concessions close --'
           @companies.each do |company|
