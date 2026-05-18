@@ -34,6 +34,33 @@ module Engine
           'ATFA' => ['#E59A91', 'black'],
           'SFTG' => ['#075BB1', 'white'],
         }.freeze
+        DTG_LOGO_PATH = '1841_dtg'
+        DTG_LOGO_MAP = {
+          'CGTF' => 'CGTF',
+          'IRSFF' => 'IRSFF',
+          'RSFS' => 'RSFS',
+          'AFI' => 'AFI',
+          'CTDA' => 'CTDA',
+          'ILTF' => 'ILTF',
+          'IFAI' => 'IFAI',
+          'RATF' => 'RATF',
+          'SLDV' => 'SLDV',
+          'CTLP' => 'CTLP',
+          'FTP' => 'FTP',
+          'SFMA' => 'SFMA',
+          'SFLP' => 'SFLP',
+          'SSFL' => 'SSFL',
+          'SFLi' => 'SFLI',
+          'SFTC' => 'SFTC',
+          'SFTN' => 'SFTN',
+          'CTS' => 'CTS',
+          'ICSF' => 'ICSF',
+          'CFCC' => 'CFCC',
+          'SB' => 'SB',
+          'SFL' => 'SFL',
+          'ATFA' => 'ATFA',
+          'SFTG' => 'SFTG',
+        }.freeze
 
         def game_companies
           companies = [
@@ -591,6 +618,10 @@ module Engine
 
             row[:color] = mapping[0]
             row[:text_color] = mapping[1]
+            if (logo = DTG_LOGO_MAP[row[:sym]]) && row[:logo]
+              row[:logo] = "#{DTG_LOGO_PATH}/#{logo}"
+              row[:simple_logo] = "#{DTG_LOGO_PATH}/#{logo}.alt"
+            end
           end
 
           rows
